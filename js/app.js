@@ -5,9 +5,12 @@ function newGame(){
   var randomNumber = Math.ceil(Math.random()*100);
   var guessCount = 0;
   // For future, change to submit by form:
-  $('#guessButton').click(function(){
+  $('#guessButton').click(function(e){
+    e.preventDefault();
+    // if('#userGuess').val().length === 0 ){return false};
     // get the user's number
     var userNumber = $('#userGuess').val();
+    $('#userGuess').val('');
     // VALIDATE!!! need to make sure its a number parseInt, also in between 1-100
     userNumber = parseInt(userNumber);
     if (0 > userNumber > 100){
@@ -37,7 +40,7 @@ function newGame(){
       feedback = 'VERY HOT';
     }
     else if(compared === 0){
-      feedback = 'YOU WIN';
+      feedback = 'YOU WIN!!!';
     }
     // change feedback text
     $('#feedback').text(feedback);
@@ -47,13 +50,11 @@ function newGame(){
     // show number the input number in the list
     $('#guessList').append('<li>' + userNumber + '</li>');
     // clear the input field
-    // $('#guessButton').click(function(){
-    //   $('#userGuess').val('');
-    // });
+    
     // // if they guess correctly, restart game
-    // if(compared === 0) {
-    //   location.reload();
-    // }
+    if(compared === 0) {
+      location.reload();
+    }
   });
 
 }
