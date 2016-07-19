@@ -7,7 +7,7 @@ function newGame(){
   // For future, change to submit by form:
   $('#guessButton').click(function(e){
     e.preventDefault();
-    // if('#userGuess').val().length === 0 ){return false};
+    if( $('#userGuess').val().length === 0 ){return false};
     // get the user's number
     var userNumber = $('#userGuess').val();
     $('#userGuess').val('');
@@ -26,20 +26,15 @@ function newGame(){
     // between 1 and 10 "very hot"
     if(compared >= 50){
       feedback = 'You are ICE COLD';
-    }
-    else if(30 <= compared <= 49){
+    } else if(compared >= 30 && compared <= 49){
       feedback = 'COLD';
-    }
-    else if(20 <= compared <= 29){
+    } else if( compared >= 20 && compared <= 29){
       feedback = 'WARM';
-    }
-    else if(10 <= compared <= 19){
+    } else if(compared >= 10 && compared <= 19){
       feedback = 'HOT';
-    }
-    else if(1 <= compared <= 9){
+    } else if(compared >= 1 && compared <=9){
       feedback = 'VERY HOT';
-    }
-    else if(compared === 0){
+    } else if(compared === 0){
       feedback = 'YOU WIN!!!';
     }
     // change feedback text
@@ -49,7 +44,6 @@ function newGame(){
     $('#count').text(guessCount);
     // show number the input number in the list
     $('#guessList').append('<li>' + userNumber + '</li>');
-    // clear the input field
     
     // // if they guess correctly, restart game
     if(compared === 0) {
