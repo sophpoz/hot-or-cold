@@ -66,6 +66,11 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
+
+  $('.new').click(function(){
+    location.reload();
+  })
+
     newGame();
 });
 
