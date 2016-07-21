@@ -7,6 +7,7 @@ function newGame(){
   // For future, change to submit by form:
   $('#guessButton').click(function(e){
     e.preventDefault();
+    //alert('SUBMITTED');
     if( $('#userGuess').val().length === 0 ){return false};
     // get the user's number
     var userNumber = $('#userGuess').val();
@@ -47,31 +48,44 @@ function newGame(){
     
     // // if they guess correctly, restart game
     if(compared === 0) {
-      location.reload();
+      // disable guess button
+      // <input type="text" disabled="true" />
+      $('#guessButton').attr("disabled", true);
     }
   });
+  
+  $('.new').click(resetGame);
+  
+  function resetGame(){
+    //alert('RESETING');
+    // clear guess list 
+    $('#guessList').text('');
+    // feedback text needs to go back to "make your guess"
+    feedback = 'Make your Guess!';
+    $('#feedback').text(feedback);
+    // reset count to 0
+    guessCount = 0;
+    $('#count').text(guessCount);
+    // grab new random number    
+    randomNumber = Math.ceil(Math.random()*100);
+    $('#guessButton').attr("disabled", false);
+  }
 
 }
 
 $(document).ready(function(){
-	
-	/*--- Display information modal box ---*/
-  	$(".what").click(function(){
-    	$(".overlay").fadeIn(1000);
+  
+  /*--- Display information modal box ---*/
+    $(".what").click(function(){
+      $(".overlay").fadeIn(1000);
 
-  	});
+    });
 
-  	/*--- Hide information modal box ---*/
-  	$("a.close").click(function(){
-  		$(".overlay").fadeOut(1000);
-  	});
-
-
-  $('.new').click(function(){
-    location.reload();
-  })
-
+    /*--- Hide information modal box ---*/
+    $("a.close").click(function(){
+      $(".overlay").fadeOut(1000);
+    });
+    
+    
     newGame();
 });
-
-
